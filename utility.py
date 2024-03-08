@@ -2,11 +2,8 @@ import streamlit as st
 import dataSample as dS
 import pymongo
 
-user = st.secrets["username"]
-password = st.secrets["password"]
 
-uri = f"mongodb+srv://{user}:{password}@cluser-exercise-log.qi8xd3g.mongodb.net/?retryWrites=true&w=majority&appName=cluser-exercise-log"
-
+uri = "mongodb+srv://cmmurgav:8N8gtofsst8aJ2qN@cluser-exercise-log.qi8xd3g.mongodb.net/"
 
 
 # client = pymongo.MongoClient(uri)
@@ -19,7 +16,7 @@ uri = f"mongodb+srv://{user}:{password}@cluser-exercise-log.qi8xd3g.mongodb.net/
 
 
 
-@st.cache_resource
+@st.cache(allow_output_mutation=True)
 def init_connection():
     client = pymongo.MongoClient(uri)
     try:
@@ -37,7 +34,7 @@ client = init_connection()
 
 @st.cache_data(ttl=600)
 
-def get_data(database, collection):
+def get_data(client, database, collection):
     db = client[database]
     collection = db[collection]
     items = list(collection.find())  # make hashable for st.cache_data

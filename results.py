@@ -1,12 +1,10 @@
 import streamlit as st
 import dataSample as dS
-import pymongo
+# import pymongo
 import utility as util
 
 utilities = util
 
-def get_unique_values(items, field):
-    return sorted(set(item[field] for item in items))
 
 
 # def app():
@@ -16,6 +14,9 @@ st.title("OPEN2024 KYNESIS RESULTS")
 # date = st.date_input("Enter the date")
 
 # st.write(items.get('Nombre') == 'Laura' )
+
+def get_unique_values(items, field):
+    return sorted(set(item[field] for item in items))
 
 
 if len(items) > 0:
