@@ -3,7 +3,7 @@ import dataSample as dS
 import pymongo
 
 
-uri = "mongodb+srv://cmmurgav:8N8gtofsst8aJ2qN@cluser-exercise-log.qi8xd3g.mongodb.net/"
+uri = r"mongodb+srv://cmmurgav:8N8gtofsst8aJ2qN@cluser-exercise-log.qi8xd3g.mongodb.net/"
 
 
 # client = pymongo.MongoClient(uri)
@@ -16,7 +16,7 @@ uri = "mongodb+srv://cmmurgav:8N8gtofsst8aJ2qN@cluser-exercise-log.qi8xd3g.mongo
 
 
 
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def init_connection():
     client = pymongo.MongoClient(uri)
     try:
@@ -34,7 +34,7 @@ client = init_connection()
 
 @st.cache_data(ttl=600)
 
-def get_data(client, database, collection):
+def get_data(database, collection):
     db = client[database]
     collection = db[collection]
     items = list(collection.find())  # make hashable for st.cache_data
