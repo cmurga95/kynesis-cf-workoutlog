@@ -1,6 +1,6 @@
 import streamlit as st
 import dataSample as dS
-import pymongo
+# import pymongo
 import utility as util
 
 utilities = util
