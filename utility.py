@@ -7,7 +7,7 @@ password = st.secrets['password']
 
 # uri = f"mongodb+srv://cmmurgav:8N8gtofsst8aJ2qN@cluser-exercise-log.qi8xd3g.mongodb.net/"
 
-uri = f"mongodb+srv://cmmurgav:8N8gtofsst8aJ2qN@cluser-exercise-log.qi8xd3g.mongodb.net/"
+uri = f"mongodb+srv://{username}:8N8gtofsst8aJ2qN@cluser-exercise-log.qi8xd3g.mongodb.net/"
 
 
 # client = pymongo.MongoClient(uri)
