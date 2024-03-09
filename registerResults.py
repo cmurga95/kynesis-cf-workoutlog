@@ -28,18 +28,23 @@ st.title('Add new records')
 horario_input = st.selectbox('Horario', horarios)
 name_input = st.text_input('Nombre')
 categoria_input = st.text_input('Categoria o peso')
-resultado_input = st.text_input('Resultado')
+resultado_input = st.number_input('Resultado', value=0, step=1)
 create_button = st.button('Create new record')
 
 
 feats = ("Horario", "Nombre", "Categoria (o peso)", "Resultado (reps)")
-vals = [horario_input, name_input, categoria_input, resultado_input]
+vals = [horario_input, name_input, categoria_input, int(resultado_input)]
 
 if create_button:
-    if len(name_input) and len(categoria_input) > 0 and len(horario_input) > 0 and len(resultado_input) > 0:
+    if len(name_input) and len(categoria_input) > 0 and len(horario_input) > 0 and len(str(resultado_input)) > 0:
         document = dict(zip(feats, vals))
         utilities.insert_document(document, 'open2024', 'open2024')
+        items = utilities.get_data("open2024", "open2024")
+        table_data = [{k: v for k, v in item.items() if k != '_id' and k!= 'Fecha'} for item in items]
 
+    else:
+        st.write("Please don't leave any blank fields")
+    
 st.title('Current records')
 
 if len(items) > 0:
