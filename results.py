@@ -41,7 +41,7 @@ if len(items) > 0:
         items = [item for item in table_data if item.get(filter_choice) == filter_value]
     
     # Apply sorting
-    items.sort(key=lambda x: x.get('Resultado (reps)', ''), reverse = True)
+    # items.sort(key=lambda x: x.get('Resultado (reps)', ''), reverse = True)
 
     # Apply projection to exclude _id column
     st.table(items)
